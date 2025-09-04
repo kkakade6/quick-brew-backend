@@ -12,7 +12,10 @@
     "summarize:once": "ts-node src/jobs/summarize.ts",
     "summarize:watch": "nodemon --watch src/jobs --exec ts-node src/jobs/summarize.ts",
     "keeper:once": "ts-node src/jobs/keeper.ts",
-    "scheduler": "ts-node src/schedule.ts"
+    "scheduler": "ts-node src/schedule.ts",
+    "start": "node cron.js",
+    "summarize:once": "ts-node src/jobs/summarize.ts",
+    "dev": "nodemon --watch src --exec ts-node src/index.ts"
   },
   "keywords": [],
   "author": "",
