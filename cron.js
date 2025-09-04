@@ -1,5 +1,9 @@
-import cron from "node-cron";
-import { runSummarizer } from "./src/jobs/summarize.js";
+// cron.js (CommonJS)
+
+require("ts-node").register({ transpileOnly: true }); // allow requiring .ts in production
+
+const cron = require("node-cron");
+const { runSummarizer } = require("./src/jobs/summarize"); // <- summarize.ts must export runSummarizer()
 
 console.log("🚀 Quick Brew Cron Worker started");
 
@@ -14,7 +18,7 @@ cron.schedule("*/30 * * * *", async () => {
   }
 });
 
-// 👇 keep process alive forever
+// keep process alive so Railway doesn't stop the container
 setInterval(() => {
   console.log("⏳ Worker alive, waiting for next run...");
-}, 1000 * 60 * 5); // log every 5 minutes
+}, 1000 * 60 * 5);

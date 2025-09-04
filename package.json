@@ -5,17 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
-    "start": "node dist/index.js",
+    "start": "node cron.js",
     "build": "tsc",
     "ingest:once": "ts-node src/jobs/ingest.ts",
     "ingest:watch": "nodemon --watch src/jobs --exec ts-node src/jobs/ingest.ts",
     "summarize:once": "ts-node src/jobs/summarize.ts",
     "summarize:watch": "nodemon --watch src/jobs --exec ts-node src/jobs/summarize.ts",
     "keeper:once": "ts-node src/jobs/keeper.ts",
-    "scheduler": "ts-node src/schedule.ts",
-    "start": "node cron.js",
-    "summarize:once": "ts-node src/jobs/summarize.ts",
-    "dev": "nodemon --watch src --exec ts-node src/index.ts"
+    "scheduler": "ts-node src/schedule.ts"
   },
   "keywords": [],
   "author": "",
