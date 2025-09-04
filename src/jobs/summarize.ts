@@ -229,13 +229,18 @@ async function saveSummary(
   articleId: string,
   payload: { bullets: string[]; why_it_matters: string }
 ) {
-  const { error } = await supabaseService.from("summary").insert({
-    article_id: articleId,
-    bullets: payload.bullets,
-    why_it_matters: payload.why_it_matters,
-    model_version: MODEL,
-    quality_score: 0.0,
-  });
+  // Try upsert on article_id to avoid duplicates across overlapping runs
+  const { error } = await supabaseService.from("summary").upsert(
+    {
+      article_id: articleId,
+      bullets: payload.bullets,
+      why_it_matters: payload.why_it_matters,
+      model_version: MODEL,
+      quality_score: 0.0,
+    },
+    { onConflict: "article_id", ignoreDuplicates: true }
+  );
+
   if (error) throw error;
 }
 

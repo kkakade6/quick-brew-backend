@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch src --exec ts-node src/index.ts",
-    "start": "node cron.js",
+    "start": "ts-node src/index.ts",             // <— for API service
+    "build": "tsc",                              
+    "summarize:once": "ts-node src/jobs/summarize.ts"
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "start": "node dist/index.js",
     "build": "tsc",
     "ingest:once": "ts-node src/jobs/ingest.ts",
     "ingest:watch": "nodemon --watch src/jobs --exec ts-node src/jobs/ingest.ts",
